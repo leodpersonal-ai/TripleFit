@@ -7,9 +7,10 @@ const defaults={goal:'hipertrofia',level:'iniciante',days:'3',minutes:'50',equip
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch{return {}}}
 const nav=[['inicio','Início',Home],['treinos','Treinos',Dumbbell],['biblioteca','Exercícios',BookOpen],['evolucao','Evolução',TrendingUp]];
 export default function App(){
- const [saved]=useState(load);
- const [page,setPage]=useState('inicio'),[profile,setProfile]=useState({...defaults,...saved.profile}),[plan,setPlan]=useState(saved.plan||null),[logs,setLogs]=useState(saved.logs||{}),[day,setDay]=useState(0),[detail,setDetail]=useState(null),[group,setGroup]=useState('Todos'),[search,setSearch]=useState('');
- useEffect(()=>{try{localStorage.setItem(KEY,JSON.stringify({profile,plan,logs}))}catch{}},[profile,plan,logs]);
+ const [hydrated,setHydrated]=useState(false);
+ const [page,setPage]=useState('inicio'),[profile,setProfile]=useState(defaults),[plan,setPlan]=useState(null),[logs,setLogs]=useState({}),[day,setDay]=useState(0),[detail,setDetail]=useState(null),[group,setGroup]=useState('Todos'),[search,setSearch]=useState('');
+ useEffect(()=>{const saved=load();setProfile({...defaults,...saved.profile});setPlan(saved.plan||null);setLogs(saved.logs||{});setHydrated(true)},[]);
+ useEffect(()=>{if(!hydrated)return;try{localStorage.setItem(KEY,JSON.stringify({profile,plan,logs}))}catch{}},[hydrated,profile,plan,logs]);
  const go=p=>{setPage(p);setDetail(null)};
  const ex=id=>exercises.find(e=>e.id===id);
  const download=()=>{const blob=new Blob([JSON.stringify({profile,plan,logs},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='triplefit-backup.json';a.click();URL.revokeObjectURL(url)};
