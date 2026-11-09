@@ -1,3 +1,4 @@
+import {getExerciseImage} from './exerciseImages.js';
 // Catálogo de partida. Imagens anatômicas só após revisão técnica.
 const records=[
 ['001','Supino reto com barra','Peitoral','barra','intermediario','Mantenha os pés apoiados e controle a descida da barra em direção ao peito.','Evite perder o controle da barra ou abrir excessivamente os cotovelos.'],
@@ -37,5 +38,5 @@ const records=[
 ['035','Adutora na máquina','Adutores','maquina','iniciante','Ajuste a amplitude e aproxime pernas de modo controlado.','Evite movimentos bruscos.'],
 ['036','Agachamento goblet','Quadríceps','halteres','iniciante','Segure halter junto ao peito e agache com pés apoiados.','Evite perder estabilidade do tronco.']
 ];
-export const exercises=records.map(([id,name,group,equipment,level,instructions,mistakes])=>({id,name,group,equipment,level,instructions,mistakes,image:null}));
+export const exercises=records.map(([id,name,group,equipment,level,instructions,mistakes])=>({id,name,group,equipment,level,instructions,mistakes,image:getExerciseImage(id)}));
 export const groups=[...new Set(exercises.map(e=>e.group))];
