@@ -82,14 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TripleFit | Treinos de Academia" },
-      { name: "description", content: "Seu gerador de treinos de academia, com exercícios e acompanhamento de evolução." },
+      { title: "ClinPharm Guide | Atlas Visual de Farmacología" },
+      { name: "description", content: "Atlas visual con 200 fichas de medicamentos y 3 guías complementarias para estudiantes de salud." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "TripleFit" },
-      { property: "og:description", content: "Treinos de academia organizados para sua rotina." },
+      { property: "og:title", content: "ClinPharm Guide" },
+      { property: "og:description", content: "200 medicamentos organizados en fichas visuales para estudiar farmacología." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@ClinPharmGuide" },
     ],
     links: [
       {
@@ -108,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>
